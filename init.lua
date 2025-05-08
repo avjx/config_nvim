@@ -124,7 +124,7 @@ require("lazy").setup({
         },
     },
     {'mg979/vim-visual-multi'}, -- Multiplos cursores (Ctrl + N e Ctrl+Up ou Down 
-    {'uga-rosa/ccc.nvim'},
+    --{'uga-rosa/ccc.nvim'},
     { "windwp/nvim-autopairs", config = function()
 	    require('nvim-autopairs').setup{}
     	end
@@ -189,7 +189,7 @@ require("lazy").setup({
 
 vim.cmd([[colorscheme nord]])
 
-require("ccc").setup()
+--require("ccc").setup()
 
 vim.g.nord_contrast = true
 vim.g.nord_borders = false
@@ -299,7 +299,7 @@ require("nvim-treesitter.configs").setup {
 
 -- Configurar LSPs
 local cmp = require('cmp')
-local lspconfig = require('lspconfig')
+--local lspconfig = require('lspconfig')
 
 cmp.setup({
   snippet = {
@@ -324,57 +324,56 @@ cmp.setup({
 })
 
 -- Configurar o LSP para usar o `nvim-cmp`
+local lspconfig = require('lspconfig')
+local configs = require('lspconfig.configs')
+
+-- Capabilities para integração com nvim-cmp (autocomplete)
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-lspconfig.pyright.setup{ capabilities = capabilities }
-lspconfig.lua_ls.setup{ capabilities = capabilities }
-lspconfig.cssls.setup{ capabilities = capabilities }
-lspconfig.html.setup{ capabilities = capabilities }
-
-require('lspconfig').pyright.setup{
-	-- LANGSERVER LOCAL cmd = {"C:/Users/{USUARIO}/AppData/Roaming/npm/pyright-langserver.cmd", "--stdio"},
-}
-
-require'lspconfig'.lua_ls.setup{}
-
--- Config JS
-require('lspconfig').tsserver.setup{}
-
-local configs = require'lspconfig.configs'
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+-- LSPs padrão com capabilities
+lspconfig.pyright.setup {
+  cmd = { "C:/Users/Comercial - Arco Tec/AppData/Roaming/npm/pyright-langserver.cmd", "--stdio" },
+  capabilities = capabilities,
+}
+
+lspconfig.lua_ls.setup {
+  capabilities = capabilities,
+}
+
+lspconfig.cssls.setup {
+  capabilities = capabilities,
+}
+
+lspconfig.html.setup {
+  capabilities = capabilities,
+}
+
+lspconfig.tsserver.setup {
+  capabilities = capabilities,
+}
+
+-- Emmet LSP (caso ainda não exista no configs)
 if not configs.ls_emmet then
   configs.ls_emmet = {
     default_config = {
-      cmd = { 'ls_emmet', '--stdio' };
+      cmd = { 'ls_emmet', '--stdio' },
       filetypes = {
-        'html',
-        'css',
-        'scss',
-        'javascriptreact',
-        'typescriptreact',
-        'haml',
-        'xml',
-        'xsl',
-        'pug',
-        'slim',
-        'sass',
-        'stylus',
-        'less',
-        'sss',
-        'hbs',
-        'handlebars',
-      };
+        'html', 'css', 'scss', 'javascriptreact', 'typescriptreact',
+        'haml', 'xml', 'xsl', 'pug', 'slim', 'sass', 'stylus', 'less',
+        'sss', 'hbs', 'handlebars',
+      },
       root_dir = function(fname)
         return vim.loop.cwd()
-      end;
-      settings = {};
-    };
+      end,
+      settings = {},
+    },
   }
 end
 
-lspconfig.ls_emmet.setup { capabilities = capabilities }
+lspconfig.ls_emmet.setup {
+  capabilities = capabilities,
+}
 -- Configuração do HTML
 --lspconfig.html.setup{}
 ---- Configuração do CSS
