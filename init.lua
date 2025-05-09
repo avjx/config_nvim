@@ -202,35 +202,9 @@ vim.g.nord_bold = false
 require('nord').set()
 
 --local customline = require'lualine.themes.iceberg_dark'
---local customline = require'lualine.themes.rose-pine'
-local lualine = require('lualine')
-local current_theme = 'seoul256'
-
-local themes = {
-  seoul256 = require('lualine.themes.seoul256'),
-  solarized_light = require('lualine.themes.solarized_light'),
+require('lualine').setup {
+  options = { theme  = 'ashes' },
 }
-
--- Aplica o tema inicial
-lualine.setup {
-  options = { theme = themes[current_theme] },
-}
-
--- Função para alternar entre os temas
-local function toggle_lualine_theme()
-  if current_theme == 'seoul256' then
-    current_theme = 'solarized_light'
-  else
-    current_theme = 'seoul256'
-  end
-  lualine.setup {
-    options = { theme = themes[current_theme] },
-  }
-  print('Lualine theme switched to: ' .. current_theme)
-end
-
--- Troca tema do lualine
-vim.keymap.set('n', '<F6>', toggle_lualine_theme, { desc = 'Toggle Lualine Theme' })
 
 -- Habilitar Transparencia
 vim.api.nvim_set_keymap("n", "<F5>", ":TransparentToggle<CR>", { noremap = true, silent = true })
