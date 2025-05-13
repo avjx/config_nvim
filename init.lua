@@ -331,7 +331,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- LSPs padrão com capabilities
 lspconfig.pyright.setup {
-  cmd = { "C:/Users/Comercial - Arco Tec/AppData/Roaming/npm/pyright-langserver.cmd", "--stdio" },
+  cmd = { "./AppData/Roaming/npm/pyright-langserver.cmd", "--stdio" },
   capabilities = capabilities,
 }
 
@@ -349,6 +349,22 @@ lspconfig.html.setup {
 
 lspconfig.tsserver.setup {
   capabilities = capabilities,
+}
+
+lspconfig.gopls.setup {
+  capabilities = capabilities,
+  cmd = { "gopls" },
+  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+        unreachable = true,
+      },
+      staticcheck = true,
+    },
+  },
 }
 
 -- Emmet LSP (caso ainda não exista no configs)
