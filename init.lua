@@ -278,8 +278,6 @@ vim.keymap.set('n', 'q<Tab>', '<Cmd>bdelete<CR>', { noremap = true, silent = tru
 vim.api.nvim_set_keymap("n", "<C-m>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>r", ":NvimTreeRefresh<CR>", { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>x', ':NvimTreeFocus<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>c', '<C-w>r', { noremap = true, silent = true })
 
 require 'nvim-treesitter.install'.prefer_git = false
 require 'nvim-treesitter.install'.compilers = {"zig", "gcc"}
