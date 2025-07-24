@@ -69,6 +69,10 @@ require("lazy").setup({
     {"xero/miasma.nvim"},
     {"rose-pine/neovim", name = "rose-pine"},
     {"zaldih/themery.nvim"},
+    {'aliqyan-21/darkvoid.nvim'},
+    {"ficcdaf/ashen.nvim"},
+    {"kdheepak/monochrome.nvim"},
+    {"chrsm/paramount-ng.nvim"},
     {"atelierbram/Base4Tone-nvim"},
     {"bgwdotdev/gleam-theme-nvim"},
     {"PinpongTp/comic"},
@@ -219,7 +223,7 @@ vim.cmd [[
 
 -- Configurações do Themery (Theme switcher)
 require("themery").setup({
-  themes = {"gruvbox-material", "nightcity", "mellifluous","cold", "comic",
+  themes = {"monochrome","paramount-ng","ashen", "darkvoid","gruvbox-material", "nightcity", "mellifluous","cold", "comic",
 	    "everforest", "evergarden", "lackluster", "noir", "poimandres",
 	    "substrata", "luma", "rose-pine", "miasma", "kanagawa-paper",
 	    "zenbones", "zenwritten", "tokyobones", "solarized", "nord", "nightfox"}, -- Your list of installed colorschemes.
@@ -347,22 +351,6 @@ lspconfig.html.setup {
 
 lspconfig.tsserver.setup {
   capabilities = capabilities,
-}
-
-lspconfig.gopls.setup {
-  capabilities = capabilities,
-  cmd = { "gopls" },
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-        unreachable = true,
-      },
-      staticcheck = true,
-    },
-  },
 }
 
 -- Emmet LSP (caso ainda não exista no configs)
