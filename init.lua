@@ -128,7 +128,6 @@ require("lazy").setup({
         },
     },
     {'mg979/vim-visual-multi'}, -- Multiplos cursores (Ctrl + N e Ctrl+Up ou Down 
-    --{'uga-rosa/ccc.nvim'},
     { "windwp/nvim-autopairs", config = function()
 	    require('nvim-autopairs').setup{}
     	end
@@ -174,6 +173,8 @@ require("lazy").setup({
 	"akinsho/bufferline.nvim",
 	dependencies = "nvim-tree/nvim-web-devicons",
     },
+    {"uga-rosa/ccc.nvim"},
+    {"nvim-treesitter/nvim-treesitter-context"},
     {
         "RRethy/vim-illuminate",
         config = function()
@@ -191,9 +192,7 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
-vim.cmd([[colorscheme nord]])
 
---require("ccc").setup()
 
 vim.g.nord_contrast = true
 vim.g.nord_borders = false
@@ -203,7 +202,7 @@ vim.g.nord_uniform_diff_background = true
 vim.g.nord_bold = false
 
 -- Carregar o esquema de cores
-require('nord').set()
+--require('nord').set()
 
 --local customline = require'lualine.themes.iceberg_dark'
 require('lualine').setup {
@@ -282,6 +281,9 @@ vim.keymap.set('n', 'q<Tab>', '<Cmd>bdelete<CR>', { noremap = true, silent = tru
 vim.api.nvim_set_keymap("n", "<C-m>", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>r", ":NvimTreeRefresh<CR>", { noremap = true, silent = true })
+
+-- Remove selected text
+vim.api.nvim_set_keymap("n", "<F2><CR>", ":noh", { noremap = true, silent = true })
 
 require 'nvim-treesitter.install'.prefer_git = false
 require 'nvim-treesitter.install'.compilers = {"zig", "gcc"}
