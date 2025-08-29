@@ -6,6 +6,11 @@ vim.o.scrolloff = 4
 vim.cmd [[set termguicolors]]
 vim.g.termguicolors=true
 
+-- indent
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
 -- folding
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
@@ -38,6 +43,15 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
+    {"zaldih/themery.nvim"},
+    {"idr4n/github-monochrome.nvim"},
+    {"e-ink-colorscheme/e-ink.nvim"},
+    {"silverneko/tachyon.vim"},
+    {"lightnolimit/cosmic-latte-nvim"},
+    {"anAcc22/sakura.nvim"},
+    {"kdheepak/monochrome.nvim"},
+    {"ficd0/ashen.nvim"},
+    {"darkvoid-theme/darkvoid.nvim"},
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -98,6 +112,7 @@ require("lazy").setup({
 			end
 		end,
 	},
+    {"saadparwaiz1/cmp_luasnip"},
 	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
@@ -205,11 +220,17 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
-vim.cmd("colorscheme habamax")
+-- themery - theme switcher
+require("themery").setup({
+  themes = {"ashen", "darkvoid", "e-ink", "github-monochrome", "habamax", "monochrome", "tachyon"},
+  livePreview = true, -- Apply theme while picking. Default to true.
+})
 
 -- Bufferline
-require("bufferline").setup{
+local bufferline = require("bufferline")
+bufferline.setup{
   options = {
+    style_preset = bufferline.style_preset.no_italic,
     numbers = "ordinal", -- buffer numbers
     diagnostics = "nvim_lsp", -- lsp integration
     offsets = {
@@ -217,7 +238,7 @@ require("bufferline").setup{
     },
     show_buffer_icons = true,
     show_buffer_close_icons = true,
-    separator_style = "slant", -- "slant", "thick", "thin", etc.
+    separator_style = "thick", -- "slant", "thick", "thin", etc
   }
 }
 vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', { noremap = true, silent = true })
