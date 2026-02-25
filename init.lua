@@ -43,6 +43,7 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
+    {"FelipeIzolan/lipoide.nvim"},
     {"zaldih/themery.nvim"},
     {"idr4n/github-monochrome.nvim"},
     {"e-ink-colorscheme/e-ink.nvim"},
@@ -89,6 +90,13 @@ require("lazy").setup({
 		}
 		end,
 	},
+    {
+        'nvim-java/nvim-java',
+        config = function()
+            require('java').setup()
+            vim.lsp.enable('jdtls')
+        end,
+    },
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
@@ -222,7 +230,7 @@ require("lazy").setup({
 
 -- themery - theme switcher
 require("themery").setup({
-  themes = {"ashen", "darkvoid", "e-ink", "github-monochrome", "habamax", "monochrome", "tachyon"},
+  themes = {"wildcharm", "ashen", "darkvoid", "e-ink", "github-monochrome", "habamax", "monochrome", "tachyon"},
   livePreview = true, -- Apply theme while picking. Default to true.
 })
 
@@ -249,7 +257,7 @@ vim.keymap.set('n', 'q<Tab>', '<Cmd>bdelete<CR>', { noremap = true, silent = tru
 -- nvim-tree config
 require("nvim-tree").setup {
     view = {
-        width = 30,              -- tree width
+        width = 80,              -- tree width
         side = "right",           -- side of the tree
     },
     renderer = {
