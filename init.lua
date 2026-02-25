@@ -278,5 +278,6 @@ vim.api.nvim_set_keymap("n", "<F2><CR>", ":noh", { noremap = true, silent = true
 -- Telescope keymaps
 vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>gg", "<cmd>Telescope live_grep<cr>")
 
 vim.keymap.set('n', '<leader>b', vim.diagnostic.open_float, { noremap = true, silent = true })
