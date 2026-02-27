@@ -53,7 +53,7 @@ require("lazy").setup({
     {"kdheepak/monochrome.nvim"},
     {"ficd0/ashen.nvim"},
     {"darkvoid-theme/darkvoid.nvim"},
-	{
+    {
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		cmd = "Telescope",
@@ -288,4 +288,8 @@ vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { no
 vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>gg", "<cmd>Telescope live_grep<cr>")
 
+-- LSP implementations
+vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
+
+-- Diagnostics
 vim.keymap.set('n', '<leader>b', vim.diagnostic.open_float, { noremap = true, silent = true })
