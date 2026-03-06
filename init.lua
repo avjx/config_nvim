@@ -15,7 +15,7 @@ vim.opt.expandtab = true
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
-vim.opt.foldcolumn = "1"
+-- vim.opt.foldcolumn = "1"
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -43,6 +43,20 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
+    {
+      "blazkowolf/gruber-darker.nvim",
+      opts = {
+        bold = true,
+        italic = {
+            strings = false,
+            comments = false,
+            operators = false,
+            folds = false,
+        },
+      },
+    },
+    {"bluz71/vim-moonfly-colors"},
+    {"wnkz/monoglow.nvim"},
     {"FelipeIzolan/lipoide.nvim"},
     {"zaldih/themery.nvim"},
     {"idr4n/github-monochrome.nvim"},
@@ -53,6 +67,40 @@ require("lazy").setup({
     {"kdheepak/monochrome.nvim"},
     {"ficd0/ashen.nvim"},
     {"darkvoid-theme/darkvoid.nvim"},
+    {
+      "lewis6991/gitsigns.nvim",
+      config = function()
+        require("gitsigns").setup({
+          signs = {
+            add = { text = "│" },
+            change = { text = "│" },
+            delete = { text = "_" },
+            topdelete = { text = "‾" },
+            changedelete = { text = "~" },
+          },
+          current_line_blame = true
+        })
+      end
+    },
+    {
+      "nvim-lualine/lualine.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      config = function()
+        require("lualine").setup({
+          options = {
+            theme = "codedark"
+          },
+          sections = {
+            lualine_a = {"mode"},
+            lualine_b = {"branch", "diff", "diagnostics"},
+            lualine_c = {"filename"},
+            lualine_x = {"filetype"},
+            lualine_y = {"progress"},
+            lualine_z = {"location"}
+          }
+        })
+      end
+    },
     {
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -230,7 +278,8 @@ require("lazy").setup({
 
 -- themery - theme switcher
 require("themery").setup({
-  themes = {"wildcharm", "ashen", "darkvoid", "e-ink", "github-monochrome", "habamax", "monochrome", "tachyon"},
+  themes = {"wildcharm", "ashen", "darkvoid", "e-ink", "github-monochrome", "habamax", "monochrome", "tachyon", "monoglow-lack",
+            "moonfly", "gruber-darker"},
   livePreview = true, -- Apply theme while picking. Default to true.
 })
 
