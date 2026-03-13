@@ -326,6 +326,18 @@ require("nvim-tree").setup {
     },
 }
 
+-- Telescope config
+require("telescope").setup({
+    defaults = {
+        layout_strategy = "horizontal",
+        layout_config = {
+          width = 0.98,
+          height = 0.98,
+          preview_width = 0.65,
+        },
+    },
+})
+
 -- Open file tree
 vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
@@ -335,6 +347,9 @@ vim.api.nvim_set_keymap("n", "<F2><CR>", ":noh", { noremap = true, silent = true
 -- Telescope keymaps
 vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>Telescope current_buffer_fuzzy_find<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>tg", "<cmd>Telescope git_status<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>")
 vim.keymap.set("n", "<leader>gg", "<cmd>Telescope live_grep<cr>")
 
 -- LSP implementations
